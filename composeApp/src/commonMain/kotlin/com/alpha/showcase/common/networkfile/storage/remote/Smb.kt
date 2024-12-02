@@ -11,9 +11,9 @@ import randomUUID
 @SerialName("SMB")
 class Smb(
   override val id: String = randomUUID(),
-  override val host: String,
+  override val host: String = "10.5.10.11",
   override val port: Int = SMB.defaultPort,
-  override val user: String,
+  override val user: String = "Drinbol",
   override val passwd: String,
   override val name: String,
   override val path: String = "/",

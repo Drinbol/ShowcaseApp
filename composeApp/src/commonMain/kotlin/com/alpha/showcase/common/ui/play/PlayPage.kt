@@ -57,7 +57,7 @@ import showcaseapp.composeapp.generated.resources.close
 import showcaseapp.composeapp.generated.resources.the_number_of_files_may_be_too_large_please_wait
 
 
-const val LOADING_WARNING_TIME = 5000L
+const val LOADING_WARNING_TIME = 50000L
 const val DEFAULT_PERIOD = 5000L
 
 @Composable
@@ -69,7 +69,7 @@ fun PlayPage(remoteApi: RemoteApi, onBack: () -> Unit = {}) {
 
     LaunchedEffect(showCloseButton) {
         if (showCloseButton) {
-            delay(5000)
+            delay(2000)
             showCloseButton = false // Hide the close button
         }
     }
@@ -146,14 +146,15 @@ fun PlayPage(remoteApi: RemoteApi, onBack: () -> Unit = {}) {
 
             imageFile.let {
                 when (it) {
-                    is UiState.Error -> {
-                        Box(modifier = Modifier.fillMaxSize()) {
-                            DataNotFoundAnim(it.msg ?: "")
-
-                        }
-                    }
-
-                    UiState.Loading -> ProgressIndicator()
+//                    不显示错误动画
+//                    is UiState.Error -> {
+//                        Box(modifier = Modifier.fillMaxSize()) {
+//                            DataNotFoundAnim(it.msg ?: "")
+//
+//                        }
+//                    }
+                    //不想显示加载动画
+                    //UiState.Loading -> ProgressIndicator()
                     is UiState.Content -> {
                         if (imageFile.succeeded && settingsState.succeeded) {
                             val settings = (settingsState as UiState.Content).data
@@ -164,6 +165,9 @@ fun PlayPage(remoteApi: RemoteApi, onBack: () -> Unit = {}) {
                                 DataNotFoundAnim()
                             }
                         }
+                    }
+                    else -> {
+                        // 不想显示加载动画
                     }
                 }
             }

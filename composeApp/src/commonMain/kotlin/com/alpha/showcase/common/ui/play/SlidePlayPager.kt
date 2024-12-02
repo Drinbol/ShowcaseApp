@@ -51,7 +51,7 @@ import org.jetbrains.compose.resources.stringResource
 import showcaseapp.composeapp.generated.resources.Res
 import showcaseapp.composeapp.generated.resources.backward
 import showcaseapp.composeapp.generated.resources.forward
-
+//滑动图片视图
 @Composable
 fun SlideImagePager(
   imageList: List<Any>,
